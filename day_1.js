@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 
 // function calcAge(birthYear = 1997) {
 //   const age = 2024 - birthYear;
@@ -100,24 +100,24 @@
 // console.log(person.age);
 // console.log(anotherPerson.age);
 
-let lastName = "Williams";
-let oldLastName = lastName;
+// let lastName = "Williams";
+// let oldLastName = lastName;
 
-lastName = "Davis";
+// lastName = "Davis";
 
-console.log(lastName);
-console.log(oldLastName);
+// console.log(lastName);
+// console.log(oldLastName);
 
-const jessica = {
-  firstName: "Jessica",
-  lastName: "Williams",
-  age: 24,
-  family: ["father", "mother", "sister"],
-};
+// const jessica = {
+//   firstName: "Jessica",
+//   lastName: "Williams",
+//   age: 24,
+//   family: ["father", "mother", "sister"],
+// };
 
-const marriedJessica = Object.assign({ birthYear: 2000 }, jessica);
-marriedJessica.lastName = "Davis";
-marriedJessica.family.push("sister-in-law");
+// const marriedJessica = Object.assign({ birthYear: 2000 }, jessica);
+// marriedJessica.lastName = "Davis";
+// marriedJessica.family.push("sister-in-law");
 
-console.log("Before Marriage", jessica);
-console.log("After Marriage", marriedJessica);
+// console.log("Before Marriage", jessica);
+// console.log("After Marriage", marriedJessica);
