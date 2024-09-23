@@ -1,59 +1,59 @@
-"use strict";
+// "use strict";
 
-const restaurant = {
-  title: "Classico-Italiano",
-  area: "Via-Angelo-Tavanti-23-Firenze-Italy",
-  categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
-  starterMenu: ["Foccaccia", "Brushetta", "Garlic-Bread", "Caprese-Salad"],
-  mainMenu: ["Pizza", "Pasta", "Risotto"],
+// const restaurant = {
+//   title: "Classico-Italiano",
+//   area: "Via-Angelo-Tavanti-23-Firenze-Italy",
+//   categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+//   starterMenu: ["Foccaccia", "Brushetta", "Garlic-Bread", "Caprese-Salad"],
+//   mainMenu: ["Pizza", "Pasta", "Risotto"],
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0,
-      close: 24,
-    },
-  },
+//   openingHours: {
+//     thu: {
+//       open: 12,
+//       close: 22,
+//     },
+//     fri: {
+//       open: 11,
+//       close: 23,
+//     },
+//     sat: {
+//       open: 0,
+//       close: 24,
+//     },
+//   },
 
-  order: function (starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  },
+//   order: function (starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
 
-  orderDelivery: function ({
-    starterIndex = 0,
-    mainIndex = 0,
-    time = "22:00",
-    address = "Home",
-  }) {
-    console.log(
-      `Order Received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}.`
-    );
-  },
+//   orderDelivery: function ({
+//     starterIndex = 0,
+//     mainIndex = 0,
+//     time = "22:00",
+//     address = "Home",
+//   }) {
+//     console.log(
+//       `Order Received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}.`
+//     );
+//   },
 
-  orderPasta: function (ing1, ing2, ing3) {
-    console.log(
-      `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
-    );
-  },
+//   orderPasta: function (ing1, ing2, ing3) {
+//     console.log(
+//       `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
+//     );
+//   },
 
-  orderPizza: function (mainIngredient, ...otherIngredients) {
-    console.log(
-      `Pizza is made with ${mainIngredient} and other items ${otherIngredients}`
-    );
-  },
-};
+//   orderPizza: function (mainIngredient, ...otherIngredients) {
+//     console.log(
+//       `Pizza is made with ${mainIngredient} and other items ${otherIngredients}`
+//     );
+//   },
+// };
 
-console.log(null || undefined);
+// console.log(null || undefined);
 
-const guests1 = restaurant.numGuests || 10;
-console.log(guests1);
+// const guests1 = restaurant.numGuests || 10;
+// console.log(guests1);
 
 // restaurant.orderPizza("Mushrooms", "onion", "olive", "spinach");
 
