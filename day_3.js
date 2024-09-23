@@ -1,83 +1,83 @@
-"use strict";
-const weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
-const openingHours = {
-  thu: {
-    open: 12,
-    close: 22,
-  },
-  fri: {
-    open: 11,
-    close: 23,
-  },
-  sat: {
-    open: 0,
-    close: 24,
-  },
-};
+// "use strict";
+// const weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+// const openingHours = {
+//   thu: {
+//     open: 12,
+//     close: 22,
+//   },
+//   fri: {
+//     open: 11,
+//     close: 23,
+//   },
+//   sat: {
+//     open: 0,
+//     close: 24,
+//   },
+// };
 
-const restaurant = {
-  title: "Classico-Italiano",
-  area: "Via-Angelo-Tavanti-23-Firenze-Italy",
-  categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
-  starterMenu: ["Foccaccia", "Brushetta", "Garlic-Bread", "Caprese-Salad"],
-  mainMenu: ["Pizza", "Pasta", "Risotto"],
+// const restaurant = {
+//   title: "Classico-Italiano",
+//   area: "Via-Angelo-Tavanti-23-Firenze-Italy",
+//   categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+//   starterMenu: ["Foccaccia", "Brushetta", "Garlic-Bread", "Caprese-Salad"],
+//   mainMenu: ["Pizza", "Pasta", "Risotto"],
 
-  // ES6 Enchanced Object Literals
-  openingHours,
-  // Before ES6
-  // openeingHours: openingHours,
+//   // ES6 Enchanced Object Literals
+//   openingHours,
+//   // Before ES6
+//   // openeingHours: openingHours,
 
-  // ES6 Enhanced methods
-  order(starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  },
-  // Before ES6
-  // order: function() {},
+//   // ES6 Enhanced methods
+//   order(starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+//   // Before ES6
+//   // order: function() {},
 
-  orderDelivery({
-    starterIndex = 0,
-    mainIndex = 0,
-    time = "22:00",
-    address = "Home",
-  }) {
-    console.log(
-      `Order Received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}.`
-    );
-  },
+//   orderDelivery({
+//     starterIndex = 0,
+//     mainIndex = 0,
+//     time = "22:00",
+//     address = "Home",
+//   }) {
+//     console.log(
+//       `Order Received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}.`
+//     );
+//   },
 
-  orderPasta(ing1, ing2, ing3) {
-    console.log(
-      `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
-    );
-  },
+//   orderPasta(ing1, ing2, ing3) {
+//     console.log(
+//       `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
+//     );
+//   },
 
-  orderPizza(mainIngredient, ...otherIngredients) {
-    console.log(
-      `Pizza is made with ${mainIngredient} and other items ${otherIngredients}`
-    );
-  },
-};
+//   orderPizza(mainIngredient, ...otherIngredients) {
+//     console.log(
+//       `Pizza is made with ${mainIngredient} and other items ${otherIngredients}`
+//     );
+//   },
+// };
 
-const ordersSet = new Set([
-  "Pasta",
-  "Pizza",
-  "Pizza",
-  "Rissoto",
-  "Pasta",
-  "Pizza",
-]);
+// const ordersSet = new Set([
+//   "Pasta",
+//   "Pizza",
+//   "Pizza",
+//   "Rissoto",
+//   "Pasta",
+//   "Pizza",
+// ]);
 
-console.log(ordersSet);
-console.log(ordersSet.size);
-console.log(ordersSet.has("Bread"));
-console.log(ordersSet.has("Pizza"));
+// console.log(ordersSet);
+// console.log(ordersSet.size);
+// console.log(ordersSet.has("Bread"));
+// console.log(ordersSet.has("Pizza"));
 
-ordersSet.add("Garlic Bread");
-ordersSet.add("Garlic Bread");
-console.log(ordersSet);
+// ordersSet.add("Garlic Bread");
+// ordersSet.add("Garlic Bread");
+// console.log(ordersSet);
 
-const ordersSetArr = [...ordersSet];
-console.log(ordersSetArr);
+// const ordersSetArr = [...ordersSet];
+// console.log(ordersSetArr);
 
 // restaurant.guestsNum = 0;
 // const guests = restaurant.guestsNum ?? 10;
@@ -108,46 +108,46 @@ console.log(ordersSetArr);
 // We're building a football betting app (soccer for my American friends 😅)!
 
 // Suppose we get data from a web service about a certain game (below). In this challenge we're gonna work with the data. So here are your tasks:
-const game = {
-  team1: "Bayern Munich",
-  team2: "Borrussia Dortmund",
-  players: [
-    [
-      "Neuer", // const [players1, players2] = ...game.players; console.log(players1, players2);
-      "Pavard",
-      "Martinez",
-      "Alaba",
-      "Davies",
-      "Kimmich",
-      "Goretzka",
-      "Coman",
-      "Muller",
-      "Gnarby",
-      "Lewandowski",
-    ],
-    [
-      "Burki",
-      "Schulz",
-      "Hummels",
-      "Akanji",
-      "Hakimi",
-      "Weigl",
-      "Witsel",
-      "Hazard",
-      "Brandt",
-      "Sancho",
-      "Gotze",
-    ],
-  ],
-  score: "4:0",
-  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
-  date: "Nov 9th, 2037",
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.5,
-  },
-};
+// const game = {
+//   team1: "Bayern Munich",
+//   team2: "Borrussia Dortmund",
+//   players: [
+//     [
+//       "Neuer", // const [players1, players2] = ...game.players; console.log(players1, players2);
+//       "Pavard",
+//       "Martinez",
+//       "Alaba",
+//       "Davies",
+//       "Kimmich",
+//       "Goretzka",
+//       "Coman",
+//       "Muller",
+//       "Gnarby",
+//       "Lewandowski",
+//     ],
+//     [
+//       "Burki",
+//       "Schulz",
+//       "Hummels",
+//       "Akanji",
+//       "Hakimi",
+//       "Weigl",
+//       "Witsel",
+//       "Hazard",
+//       "Brandt",
+//       "Sancho",
+//       "Gotze",
+//     ],
+//   ],
+//   score: "4:0",
+//   scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+//   date: "Nov 9th, 2037",
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+// };
 
 // // Coding Challenge #2
 
