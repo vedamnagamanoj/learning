@@ -10,7 +10,7 @@
         box-sizing: border-box;
       }
       body {
-        background-image: linear-gradient(to bottom right, pink, purple);
+        background-image: linear-gradient(to top right, blue, purple);
       }
 
       h1 {
@@ -21,9 +21,31 @@
         justify-content: center;
         align-items: center;
       }
+
+      .booking {
+        margin-top: 1rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .btn {
+        font-size: 2rem;
+        font-weight: bold;
+        padding: 0.75rem;
+        margin: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     </style>
   </head>
   <body>
+    <div class="booking">
+      <button class="btn new-plane-btn">Buy new plane ✈️</button>
+      <button class="btn answer-poll-btn">Answer poll 🤔</button>
+    </div>
     <h1>Learning JavaScript</h1>
 
     <script src="./day_1.js"></script>
@@ -31,5 +53,6 @@
     <script src="./day_3.js"></script>
     <script src="./day_4.js"></script>
     <script src="./day_5.js"></script>
+    <script src="./day_6.js"></script>
   </body>
 </html>

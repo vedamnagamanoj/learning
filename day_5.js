@@ -69,15 +69,15 @@
 
 // ["Jonas", "Martin", "Adam"].forEach((item) => high5(item));
 
-function greet(greeting) {
-  console.log(this);
-  return (name) => {
-    console.log(`${greeting} ${name} ${this}`);
-  };
-}
+// function greet(greeting) {
+//   console.log(this);
+//   return (name) => {
+//     console.log(`${greeting} ${name} ${this}`);
+//   };
+// }
 
-greet("Hello")("Jonas");
+// greet("Hello")("Jonas");
 
-const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`);
+// const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`);
 
-greetArr("Hello")("Jonas");
+// greetArr("Hello")("Jonas");
