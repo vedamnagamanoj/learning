@@ -156,7 +156,6 @@ const poll = {
     const userInput = prompt(`${this.question}
       ${this.options.map((option) => option)}     
       (Write option number)`);
-    console.log(userInput);
 
     if (
       userInput >= 0 &&
@@ -164,8 +163,13 @@ const poll = {
       userInput !== null
     ) {
       this.answers[userInput]++;
-      console.log(this.answers);
+      this.displayResults();
     } else this.registerNewAnswer();
+  },
+  displayResults(type = "string") {
+    if (type === "array") console.log(this.answers);
+    if (type === "string")
+      console.log(`Poll results are ${this.answers.map((answer) => answer)}`);
   },
 };
 
