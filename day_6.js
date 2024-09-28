@@ -153,26 +153,51 @@ const poll = {
   answers: new Array(4).fill(0),
 
   registerNewAnswer() {
-    const userInput = prompt(`${this.question}
-      ${this.options.map((option) => option)}     
-      (Write option number)`);
+    let userInput = prompt(
+      `${this.question}\n${this.options.join("\n")}\n(Write option number)`
+    );
+    userInput &&= Number(userInput);
 
-    if (
-      userInput >= 0 &&
+    typeof userInput === "number" &&
       userInput < this.answers.length &&
-      userInput !== null
-    ) {
+      userInput >= 0 &&
       this.answers[userInput]++;
-      this.displayResults();
-    } else this.registerNewAnswer();
+
+    // if (userInput >= 0 && userInput < this.answers.length) {
+    //   this.answers[userInput]++;
+    //   this.displayResults();
+    // } else this.registerNewAnswer();
+
+    this.displayResults();
+    this.displayResults("string");
   },
-  displayResults(type = "string") {
-    if (type === "array") console.log(this.answers);
-    if (type === "string")
-      console.log(`Poll results are ${this.answers.map((answer) => answer)}`);
+
+  displayResults(type = "array") {
+    const result = {
+      array: this.answers,
+      string: `Poll results are ${this.answers.join(", ")}`,
+    };
+
+    console.log(result[type.toLowerCase()]);
   },
 };
 
 document
   .querySelector(".answer-poll-btn")
   .addEventListener("click", poll.registerNewAnswer.bind(poll));
+
+// [5, 2, 3]
+// [1, 5, 3, 9, 6, 1]
+const data1 = {
+  answers: [5, 2, 3],
+};
+
+const data2 = {
+  answers: [1, 5, 3, 9, 6, 1],
+};
+
+poll.displayResults.call(data1);
+poll.displayResults.call(data1, "string");
+
+poll.displayResults.call(data2);
+poll.displayResults.call(data2, "string");
