@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 
 // const lufthansa = {
 //   airline: "Lufthansa",
@@ -146,58 +146,58 @@
 
 // GOOD LUCK 😀
 
-const poll = {
-  question: "What is your favourite programming language?",
-  options: ["0: JavaScript", "1: Python", "2: Rust", "3: C++"],
-  // This generates [0, 0, 0, 0]. More in the next section 😃
-  answers: new Array(4).fill(0),
+// const poll = {
+//   question: "What is your favourite programming language?",
+//   options: ["0: JavaScript", "1: Python", "2: Rust", "3: C++"],
+//   // This generates [0, 0, 0, 0]. More in the next section 😃
+//   answers: new Array(4).fill(0),
 
-  registerNewAnswer() {
-    let userInput = prompt(
-      `${this.question}\n${this.options.join("\n")}\n(Write option number)`
-    );
-    userInput &&= Number(userInput);
+//   registerNewAnswer() {
+//     let userInput = prompt(
+//       `${this.question}\n${this.options.join("\n")}\n(Write option number)`
+//     );
+//     userInput &&= Number(userInput);
 
-    typeof userInput === "number" &&
-      userInput < this.answers.length &&
-      userInput >= 0 &&
-      this.answers[userInput]++;
+//     typeof userInput === "number" &&
+//       userInput < this.answers.length &&
+//       userInput >= 0 &&
+//       this.answers[userInput]++;
 
-    // if (userInput >= 0 && userInput < this.answers.length) {
-    //   this.answers[userInput]++;
-    //   this.displayResults();
-    // } else this.registerNewAnswer();
+//     // if (userInput >= 0 && userInput < this.answers.length) {
+//     //   this.answers[userInput]++;
+//     //   this.displayResults();
+//     // } else this.registerNewAnswer();
 
-    this.displayResults();
-    this.displayResults("string");
-  },
+//     this.displayResults();
+//     this.displayResults("string");
+//   },
 
-  displayResults(type = "array") {
-    const result = {
-      array: this.answers,
-      string: `Poll results are ${this.answers.join(", ")}`,
-    };
+//   displayResults(type = "array") {
+//     const result = {
+//       array: this.answers,
+//       string: `Poll results are ${this.answers.join(", ")}`,
+//     };
 
-    console.log(result[type.toLowerCase()]);
-  },
-};
+//     console.log(result[type.toLowerCase()]);
+//   },
+// };
 
-document
-  .querySelector(".answer-poll-btn")
-  .addEventListener("click", poll.registerNewAnswer.bind(poll));
+// document
+//   .querySelector(".answer-poll-btn")
+//   .addEventListener("click", poll.registerNewAnswer.bind(poll));
 
-// [5, 2, 3]
-// [1, 5, 3, 9, 6, 1]
-const data1 = {
-  answers: [5, 2, 3],
-};
+// // [5, 2, 3]
+// // [1, 5, 3, 9, 6, 1]
+// const data1 = {
+//   answers: [5, 2, 3],
+// };
 
-const data2 = {
-  answers: [1, 5, 3, 9, 6, 1],
-};
+// const data2 = {
+//   answers: [1, 5, 3, 9, 6, 1],
+// };
 
-poll.displayResults.call(data1);
-poll.displayResults.call(data1, "string");
+// poll.displayResults.call(data1);
+// poll.displayResults.call(data1, "string");
 
-poll.displayResults.call(data2);
-poll.displayResults.call(data2, "string");
+// poll.displayResults.call(data2);
+// poll.displayResults.call(data2, "string");
