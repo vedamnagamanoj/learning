@@ -112,13 +112,13 @@ And now explain to YOURSELF (or someone around you) WHY this worked! Take all th
 GOOD LUCK 😀
 */
 
-(function () {
-  const header = document.querySelector("h1");
-  const colors = ["red", "green", "blue", "cyan", "magenta", "yellow"];
+// (function () {
+//   const header = document.querySelector("h1");
+//   const colors = ["red", "green", "blue", "cyan", "magenta", "yellow"];
 
-  header.addEventListener("click", () => {
-    const idx = Math.trunc(Math.random() * colors.length);
-    console.log(idx);
-    header.style.color = colors[idx];
-  });
-})();
+//   header.addEventListener("click", () => {
+//     const idx = Math.trunc(Math.random() * colors.length);
+//     console.log(idx);
+//     header.style.color = colors[idx];
+//   });
+// })();
