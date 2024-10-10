@@ -94,19 +94,43 @@ const createUserNames = function (accounts) {
 
 function calcPrintBalance(movements) {
   const balance = movements.reduce((total, movement) => total + movement, 0);
-  labelBalance.textContent = `${balance} €`;
+  labelBalance.textContent = `${balance}€`;
+}
+
+function calcDisplaySummary(account) {
+  const depositAmount = account.movements
+    .filter(movement => movement > 0)
+    .reduce((result, movement) => result + movement, 0);
+  labelSumIn.textContent = `${depositAmount}€`;
+
+  const withdrawalAmount = account.movements
+    .filter(movement => movement < 0)
+    .map(movement => Math.abs(movement))
+    .reduce((result, movement) => result + movement, 0);
+  labelSumOut.textContent = `${withdrawalAmount}€`;
+
+  const interestAmount = depositAmount * account.interestRate * 0.01;
+  labelSumInterest.textContent = `${interestAmount}€`;
 }
 
 displayMovements(account1.movements);
 createUserNames(accounts);
 calcPrintBalance(account1.movements);
+calcDisplaySummary(account1);
 
-const anotherMovements = [-650, -200, -450, -1, -55];
-const maxValue = anotherMovements.reduce(
-  (result, movement) => (movement > result ? movement : result),
-  anotherMovements[0]
-);
-console.log(maxValue);
+// const usdBalance = movements
+//   .map(movement => Math.round(movement * 1.09))
+//   .filter(movement => movement > 0)
+//   .reduce((result, movement) => result + movement, 0);
+
+// console.log(usdBalance);
+
+// const anotherMovements = [-650, -200, -450, -1, -55];
+// const maxValue = anotherMovements.reduce(
+//   (result, movement) => (movement > result ? movement : result),
+//   anotherMovements[0]
+// );
+// console.log(maxValue);
 
 // const calcBalance = function (total, movement) {
 //   return total + movement;
@@ -210,3 +234,58 @@ console.log(maxValue);
 // const currenciesUnique = new Set(["USD", "GBP", "INR", "EUR", "EUR"]);
 
 // currenciesUnique.forEach((code, _, curr) => console.log(`${code} ${curr}`));
+
+// {
+//   // Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+//   // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+//   // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+//   // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+//   // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+//   // Placeholders with the same ids are connected.
+//   // Example:
+//   "Print to console": {
+//     "scope": "javascript,typescript",
+//     "prefix": "cl",
+//     "body": ["console.log($1);"],
+//     "description": "Log output to console"
+//   },
+
+//   "reactComponent": {
+//     "prefix": "rfc",
+//     "scope": "javascript,typescript,javascriptreact",
+//     "body": [
+//       "function ${1:${TM_FILENAME_BASE}}() {",
+//       "\treturn (",
+//       "\t\t<div>",
+//       "\t\t\t$0",
+//       "\t\t</div>",
+//       "\t)",
+//       "}",
+//       "",
+//       "export default ${1:${TM_FILENAME_BASE}}",
+//       ""
+//     ],
+//     "description": "React component"
+//   },
+//   "reactStyledComponent": {
+//     "prefix": "rsc",
+//     "scope": "javascript,typescript,javascriptreact",
+//     "body": [
+//       "import styled from 'styled-components'",
+//       "",
+//       "const Styled${TM_FILENAME_BASE} = styled.$0``",
+//       "",
+//       "function ${TM_FILENAME_BASE}() {",
+//       "\treturn (",
+//       "\t\t<Styled${TM_FILENAME_BASE}>",
+//       "\t\t\t${TM_FILENAME_BASE}",
+//       "\t\t</Styled${TM_FILENAME_BASE}>",
+//       "\t)",
+//       "}",
+//       "",
+//       "export default ${TM_FILENAME_BASE}",
+//       ""
+//     ],
+//     "description": "React styled component"
+//   }
+// }
