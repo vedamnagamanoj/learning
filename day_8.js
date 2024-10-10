@@ -21,26 +21,26 @@ TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 GOOD LUCK 😀
 */
 
-function checkDogs(dogsJulia, dogsKate) {
-  // 1
-  const firstCat = 1;
-  const lastTwoCats = dogsJulia.length - 3;
-  const onlyDogsJulia = dogsJulia.slice().splice(firstCat, lastTwoCats);
-  console.log(onlyDogsJulia);
+// function checkDogs(dogsJulia, dogsKate) {
+//   // 1
+//   const firstCat = 1;
+//   const lastTwoCats = dogsJulia.length - 3;
+//   const onlyDogsJulia = dogsJulia.slice().splice(firstCat, lastTwoCats);
+//   console.log(onlyDogsJulia);
 
-  // 2
-  const allDogs = onlyDogsJulia.concat(dogsKate);
-  console.log(allDogs);
+//   // 2
+//   const allDogs = onlyDogsJulia.concat(dogsKate);
+//   console.log(allDogs);
 
-  // 3
-  allDogs.forEach((dog, idx) => {
-    console.log(
-      `Dog number ${idx + 1} is ${
-        dog > 0 && dog < 5 ? `still a puppy` : `an adult`
-      }, and is ${dog} years old`
-    );
-  });
-}
+//   // 3
+//   allDogs.forEach((dog, idx) => {
+//     console.log(
+//       `Dog number ${idx + 1} is ${
+//         dog > 0 && dog < 5 ? `still a puppy` : `an adult`
+//       }, and is ${dog} years old`
+//     );
+//   });
+// }
 
-checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
-checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+// checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);

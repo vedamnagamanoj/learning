@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -6,28 +6,28 @@
 
 // Data
 const account1 = {
-  owner: "Jonas Schmedtmann",
+  owner: 'Jonas Schmedtmann',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   interestRate: 1.2, // %
   pin: 1111,
 };
 
 const account2 = {
-  owner: "Jessica Davis",
+  owner: 'Jessica Davis',
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
 };
 
 const account3 = {
-  owner: "Steven Thomas Williams",
+  owner: 'Steven Thomas Williams',
   movements: [200, -200, 340, -300, -20, 50, 400, -460],
   interestRate: 0.7,
   pin: 3333,
 };
 
 const account4 = {
-  owner: "Sarah Smith",
+  owner: 'Sarah Smith',
   movements: [430, 1000, 700, 50, 90],
   interestRate: 1,
   pin: 4444,
@@ -35,37 +35,39 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
 // Elements
-const labelWelcome = document.querySelector(".welcome");
-const labelDate = document.querySelector(".date");
-const labelBalance = document.querySelector(".balance__value");
-const labelSumIn = document.querySelector(".summary__value--in");
-const labelSumOut = document.querySelector(".summary__value--out");
-const labelSumInterest = document.querySelector(".summary__value--interest");
-const labelTimer = document.querySelector(".timer");
+const labelWelcome = document.querySelector('.welcome');
+const labelDate = document.querySelector('.date');
+const labelBalance = document.querySelector('.balance__value');
+const labelSumIn = document.querySelector('.summary__value--in');
+const labelSumOut = document.querySelector('.summary__value--out');
+const labelSumInterest = document.querySelector('.summary__value--interest');
+const labelTimer = document.querySelector('.timer');
 
-const containerApp = document.querySelector(".app");
-const containerMovements = document.querySelector(".movements");
+const containerApp = document.querySelector('.app');
+const containerMovements = document.querySelector('.movements');
 
-const btnLogin = document.querySelector(".login__btn");
-const btnTransfer = document.querySelector(".form__btn--transfer");
-const btnLoan = document.querySelector(".form__btn--loan");
-const btnClose = document.querySelector(".form__btn--close");
-const btnSort = document.querySelector(".btn--sort");
+const btnLogin = document.querySelector('.login__btn');
+const btnTransfer = document.querySelector('.form__btn--transfer');
+const btnLoan = document.querySelector('.form__btn--loan');
+const btnClose = document.querySelector('.form__btn--close');
+const btnSort = document.querySelector('.btn--sort');
 
-const inputLoginUsername = document.querySelector(".login__input--user");
-const inputLoginPin = document.querySelector(".login__input--pin");
-const inputTransferTo = document.querySelector(".form__input--to");
-const inputTransferAmount = document.querySelector(".form__input--amount");
-const inputLoanAmount = document.querySelector(".form__input--loan-amount");
-const inputCloseUsername = document.querySelector(".form__input--user");
-const inputClosePin = document.querySelector(".form__input--pin");
+const inputLoginUsername = document.querySelector('.login__input--user');
+const inputLoginPin = document.querySelector('.login__input--pin');
+const inputTransferTo = document.querySelector('.form__input--to');
+const inputTransferAmount = document.querySelector('.form__input--amount');
+const inputLoanAmount = document.querySelector('.form__input--loan-amount');
+const inputCloseUsername = document.querySelector('.form__input--user');
+const inputClosePin = document.querySelector('.form__input--pin');
 
 const displayMovements = function (movements) {
-  containerMovements.innerHTML = "";
+  containerMovements.innerHTML = '';
 
   movements.forEach((movement, idx) => {
-    const movementType = movement > 0 ? "deposit" : "withdrawal";
+    const movementType = movement > 0 ? 'deposit' : 'withdrawal';
     const html = `
       <div class="movements__row">
           <div class="movements__type movements__type--${movementType}">${
@@ -75,11 +77,67 @@ const displayMovements = function (movements) {
           <div class="movements__value">${Math.abs(movement)}€</div>
         </div>`;
 
-    containerMovements.insertAdjacentHTML("afterbegin", html);
+    containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
 
+const createUserNames = function (accounts) {
+  accounts.forEach(
+    account =>
+      (account.userName = account.owner
+        .toLowerCase()
+        .split(' ')
+        .map(name => name[0])
+        .join(''))
+  );
+};
+
+function calcPrintBalance(movements) {
+  const balance = movements.reduce((total, movement) => total + movement, 0);
+  labelBalance.textContent = `${balance} €`;
+}
+
 displayMovements(account1.movements);
+createUserNames(accounts);
+calcPrintBalance(account1.movements);
+
+const anotherMovements = [-650, -200, -450, -1, -55];
+const maxValue = anotherMovements.reduce(
+  (result, movement) => (movement > result ? movement : result),
+  anotherMovements[0]
+);
+console.log(maxValue);
+
+// const calcBalance = function (total, movement) {
+//   return total + movement;
+// };
+
+// const calcBalance2 = function (total) {
+//   return total;
+// };
+
+// const balance = movements.reduce((total, movement) => total + movement, 0);
+// const balance2 = movements.reduce(calcBalance, 0);
+// const balance3 = movements.reduce(calcBalance2, 0);
+// console.log(balance);
+// console.log(balance2);
+// console.log(balance3);
+
+// const user = 'Steven Shankar Khan';
+
+// const userName = user
+//   .toLowerCase()
+//   .split(' ')
+//   .map(word => word[0])
+//   .join('');
+// .reduce((str, word) => str + word[0], "");
+
+// const deposits = movements.filter(movement => movement > 0);
+// const withdrawals = movements
+//   .filter(movement => movement < 0)
+//   .map(amount => Math.abs(amount));
+// console.log(deposits);
+// console.log(withdrawals);
 
 // console.log(containerMovements.innerHTML);
 
