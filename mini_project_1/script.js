@@ -175,6 +175,45 @@ btnTransfer.addEventListener('click', evnt => {
     inputTransferTo.blur();
   }
 });
+
+btnLoan.addEventListener('click', evnt => {
+  evnt.preventDefault();
+  const loanAmount = Number(inputLoanAmount.value);
+
+  if (
+    loanAmount > 0 &&
+    currentAccount.movements.some(movement => movement >= loanAmount * 0.1)
+  ) {
+    currentAccount.movements.push(loanAmount);
+    updateUI(currentAccount);
+  } else {
+    console.log('Loan Rejected');
+  }
+
+  inputLoanAmount.value = '';
+  inputLoanAmount.blur();
+});
+
+btnClose.addEventListener('click', evnt => {
+  evnt.preventDefault();
+
+  if (
+    inputCloseUsername.value === currentAccount.userName &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const deleteAccountIndex = accounts.findIndex(
+      account => account.userName === currentAccount.userName
+    );
+
+    // console.log(accounts.indexOf(currentAccount));
+    console.log(deleteAccountIndex);
+    accounts.splice(deleteAccountIndex, 1);
+    containerApp.style.opacity = 0;
+
+    inputCloseUsername.value = inputClosePin.value = '';
+  }
+});
+
 // displayMovements(account1.movements);
 // createUserNames(accounts);
 // calcPrintBalance(account1.movements);
