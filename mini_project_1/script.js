@@ -63,10 +63,12 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
+// Functions
+
+const displayMovements = function (account) {
   containerMovements.innerHTML = '';
 
-  movements.forEach((movement, idx) => {
+  account.movements.forEach((movement, idx) => {
     const movementType = movement > 0 ? 'deposit' : 'withdrawal';
     const html = `
       <div class="movements__row">
@@ -92,9 +94,12 @@ const createUserNames = function (accounts) {
   );
 };
 
-function calcPrintBalance(movements) {
-  const balance = movements.reduce((total, movement) => total + movement, 0);
-  labelBalance.textContent = `${balance}€`;
+function calcPrintBalance(account) {
+  account.balance = account.movements.reduce(
+    (total, movement) => total + movement,
+    0
+  );
+  labelBalance.textContent = `${account.balance}€`;
 }
 
 function calcDisplaySummary(account) {
@@ -112,11 +117,68 @@ function calcDisplaySummary(account) {
   const interestAmount = depositAmount * account.interestRate * 0.01;
   labelSumInterest.textContent = `${interestAmount}€`;
 }
-
-displayMovements(account1.movements);
+function updateUI(currentAccount) {
+  // display the resutls
+  displayMovements(currentAccount);
+  calcPrintBalance(currentAccount);
+  calcDisplaySummary(currentAccount);
+}
+// Starting application
 createUserNames(accounts);
-calcPrintBalance(account1.movements);
-calcDisplaySummary(account1);
+let currentAccount;
+
+// Handling Events
+
+btnLogin.addEventListener('click', evnt => {
+  evnt.preventDefault();
+  // get and verify username and pin
+  currentAccount = accounts.find(
+    account => account.userName === inputLoginUsername.value
+  );
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+
+    // Clear the input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+    inputLoginUsername.blur();
+    containerApp.style.opacity = 1;
+
+    updateUI(currentAccount);
+  }
+});
+
+btnTransfer.addEventListener('click', evnt => {
+  evnt.preventDefault();
+
+  const amount = Number(inputTransferAmount.value);
+  const receiverAccount = accounts.find(
+    account => account.userName === inputTransferTo.value
+  );
+
+  if (
+    amount > 0 &&
+    receiverAccount &&
+    currentAccount.balance >= amount &&
+    currentAccount.userName !== receiverAccount?.userName
+  ) {
+    currentAccount.movements.push(-amount);
+    receiverAccount.movements.push(amount);
+
+    updateUI(currentAccount);
+
+    inputTransferAmount.value = inputTransferTo.value = '';
+    inputTransferAmount.blur();
+    inputTransferTo.blur();
+  }
+});
+// displayMovements(account1.movements);
+// createUserNames(accounts);
+// calcPrintBalance(account1.movements);
+// calcDisplaySummary(account1);
 
 // const usdBalance = movements
 //   .map(movement => Math.round(movement * 1.09))

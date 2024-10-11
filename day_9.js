@@ -37,29 +37,29 @@ TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 GOOD LUCK 😀
 */
 
-function calcAverageHumanAge(ages) {
-  const humanDogAges = ages.map(age => (age <= 2 ? age * 2 : age * 4 + 16));
-  console.log(humanDogAges);
+// function calcAverageHumanAge(ages) {
+//   const humanDogAges = ages.map(age => (age <= 2 ? age * 2 : age * 4 + 16));
+//   console.log(humanDogAges);
 
-  const majorDogs = humanDogAges.filter(age => age >= 18);
-  console.log(majorDogs);
+//   const majorDogs = humanDogAges.filter(age => age >= 18);
+//   console.log(majorDogs);
 
-  const avgMajorDogAge = Math.round(
-    majorDogs.reduce((result, age) => result + age, 0) / majorDogs.length
-  );
-  console.log(avgMajorDogAge);
-}
+//   const avgMajorDogAge = Math.round(
+//     majorDogs.reduce((result, age) => result + age, 0) / majorDogs.length
+//   );
+//   console.log(avgMajorDogAge);
+// }
 
-// Challenge 3 - solve challenge 2 using arrow functions
+// // Challenge 3 - solve challenge 2 using arrow functions
 
-const calcAverageHumanAgeArrow = ages =>
-  ages
-    .map(age => (age <= 2 ? age * 2 : age * 4 + 16))
-    .filter(age => age >= 18)
-    .reduce((result, age, _, arr) => result + age / arr.length, 0);
+// const calcAverageHumanAgeArrow = ages =>
+//   ages
+//     .map(age => (age <= 2 ? age * 2 : age * 4 + 16))
+//     .filter(age => age >= 18)
+//     .reduce((result, age, _, arr) => result + age / arr.length, 0);
 
-calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
-calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+// calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 
-console.log(calcAverageHumanAgeArrow([5, 2, 4, 1, 15, 8, 3]));
-console.log(calcAverageHumanAgeArrow([16, 6, 10, 5, 6, 1, 4]));
+// console.log(calcAverageHumanAgeArrow([5, 2, 4, 1, 15, 8, 3]));
+// console.log(calcAverageHumanAgeArrow([16, 6, 10, 5, 6, 1, 4]));
