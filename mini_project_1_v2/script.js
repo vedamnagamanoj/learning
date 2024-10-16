@@ -11,6 +11,11 @@ const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 
+const navEl = document.querySelector('.nav');
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
 const openModal = function (evnt) {
   evnt.preventDefault();
   modal.classList.remove('hidden');
@@ -21,6 +26,24 @@ const closeModal = function () {
   modal.classList.add('hidden');
   overlay.classList.add('hidden');
 };
+
+function handleHover(evnt) {
+  const selectedLink = evnt.target;
+
+  if (selectedLink.classList.contains('nav__link')) {
+    const siblings = selectedLink
+      .closest('.nav')
+      .querySelectorAll('.nav__link');
+    const logo = selectedLink.closest('.nav').querySelector('.nav__logo');
+
+    siblings.forEach(sibling => {
+      if (sibling !== selectedLink) {
+        sibling.style.opacity = this;
+      }
+    });
+    logo.style.opacity = this;
+  }
+}
 
 // for (let i = 0; i < btnsOpenModal.length; i++)
 //   btnsOpenModal[i].addEventListener('click', openModal);
@@ -54,6 +77,42 @@ btnScrollTo.addEventListener('click', evnt => {
   section1El.scrollIntoView({ behavior: 'smooth' });
 });
 
+// const tabsEl = document.querySelector('.operations__tab-container');
+// tabsContainer.addEventListener('click', function (evnt) {
+//   if (evnt.target.classList.contains('operations__tab'))
+//     console.log(evnt.target.textContent);
+// });
+
+// tabs.forEach(tab => tab.addEventListener('click', () => console.log(`TAb`)));
+tabsContainer.addEventListener('click', function (evnt) {
+  const clickedEl = evnt.target.closest('.operations__tab');
+
+  // console.log(clickedEl);
+
+  // Guard Clause
+  if (!clickedEl) return;
+
+  // Removing the active tab and content for all the tabs
+  tabs.forEach(tab => tab.classList.remove('operations__tab--active'));
+  tabsContent.forEach(tabContent =>
+    tabContent.classList.remove('operations__content--active')
+  );
+
+  // Activate selected tab
+  clickedEl.classList.add('operations__tab--active');
+
+  // Activating content area
+
+  // document
+  //   .querySelector(`.operations__content--${clickedEl.dataset.tab}`)
+  //   .classList.add(`operations__content--active`);
+  document
+    .querySelector(
+      `.operations__content--${clickedEl.getAttribute('data-tab')}`
+    )
+    .classList.add(`operations__content--active`);
+});
+
 /////////////////////////////////////////////////////////////////
 // Page Navigation
 
@@ -71,7 +130,7 @@ btnScrollTo.addEventListener('click', evnt => {
 
 // Event Delegation
 
-// add evnt listner to common parent element.
+// add evnt listener to common parent element.
 // determine what element originated the event.
 
 document
@@ -90,29 +149,36 @@ document
     }
   });
 
+// navEl.addEventListener('mouseover', evnt => handleHover(evnt, 0.5));
+// navEl.addEventListener('mouseout', evnt => handleHover(evnt, 1));
+
+// Passing argumets to handler functions
+navEl.addEventListener('mouseover', handleHover.bind(0.5));
+navEl.addEventListener('mouseout', handleHover.bind(1));
+
 /////////////////////////////////////////////////////////////////
 
 // Test Area
 
-//
-const h1 = document.querySelector('h1');
+// //
+// const h1 = document.querySelector('h1');
 
-// Going Downwards
+// // Going Downwards
 
-console.log(document.querySelectorAll('.highlight'));
-console.log(h1.querySelectorAll('.highlight'));
-console.log(h1.childNodes);
-console.log(h1.children);
-console.log(h1.firstChild);
-console.log(h1.firstElementChild);
-h1.firstElementChild.style.color = 'white';
-h1.lastElementChild.style.color = 'red';
+// console.log(document.querySelectorAll('.highlight'));
+// console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.childNodes);
+// console.log(h1.children);
+// console.log(h1.firstChild);
+// console.log(h1.firstElementChild);
+// h1.firstElementChild.style.color = 'white';
+// h1.lastElementChild.style.color = 'red';
 
-h1.closest('.header').style.background = `var(--gradient-secondary)`;
+// h1.closest('.header').style.background = `var(--gradient-secondary)`;
 
-[...h1.parentElement.children].forEach(child => {
-  if (child !== h1) child.style.transform = `scale(0.5)`;
-});
+// [...h1.parentElement.children].forEach(child => {
+//   if (child !== h1) child.style.transform = `scale(0.5)`;
+// });
 
 // document.querySelectorAll('.nav__link').forEach(link =>
 //   link.addEventListener('click', function (evnt) {

@@ -109,26 +109,26 @@
 // const h1 = document.querySelector('h1');
 // h1.addEventListener('mouseenter', alertH1);
 
-document
-  .querySelector('a')
-  .addEventListener('click', () => console.log(`clicked on <a> element`));
+// document
+//   .querySelector('a')
+//   .addEventListener('click', () => console.log(`clicked on <a> element`));
 
-document
-  .querySelector('section')
-  .addEventListener('click', () => console.log(`clicked on <section> element`));
+// document
+//   .querySelector('section')
+//   .addEventListener('click', () => console.log(`clicked on <section> element`));
 
-document
-  .querySelector('body')
-  .addEventListener('click', () => console.log('clicked on <body> element'));
+// document
+//   .querySelector('body')
+//   .addEventListener('click', () => console.log('clicked on <body> element'));
 
-document
-  .querySelector('html')
-  .addEventListener('click', () => console.log(`clicked on <html> elememt`));
+// document
+//   .querySelector('html')
+//   .addEventListener('click', () => console.log(`clicked on <html> elememt`));
 
-document
-  .querySelector('p')
-  .addEventListener('click', () => console.log(`clicked on <p> elememt`));
+// document
+//   .querySelector('p')
+//   .addEventListener('click', () => console.log(`clicked on <p> elememt`));
 
-document.documentElement.addEventListener('click', () =>
-  console.log(`clicked on <document> elememt`)
-);
+// document.documentElement.addEventListener('click', () =>
+//   console.log(`clicked on <document> elememt`)
+// );
