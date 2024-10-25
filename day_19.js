@@ -22,7 +22,7 @@ function renderCountry(country, className = '') {
         </article>`;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 }
 
 function renderError(msg) {
@@ -148,7 +148,25 @@ TEST COORDINATES 2: -33.933, 18.474
 GOOD LUCK 😀
 */
 
-const apiKey = '990770024429354880641x98406';
-fetch(`https://geocode.xyz/51.50354,-0.12768?geoit=json&auth=${apiKey}`)
-  .then(response => response.json())
-  .then(data => console.log(data));
+// whereAmI(20.593684, 78.96288); // India
+// whereAmI(37.09024, -95.712891); // America
+// whereAmI(61.52401, 105.318756); // Australia
+// whereAmI(-40.900557, 174.885971); // New Zealand
+
+whereAmI(52.508, 13.381);
+whereAmI(19.037, 72.873);
+whereAmI(-33.933, 18.474);
+
+function whereAmI(lat, lng) {
+  const apiKey = '990770024429354880641x98406';
+  fetch(`https://geocode.xyz/${lat + ''},${lng + ''}?geoit=json&auth=${apiKey}`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(`You are in ${data.city}, ${data.country}`);
+      // getCountryData(data.country.toLowerCase());
+      return data.country.toLowerCase();
+    })
+    .then(country => fetch(`https://restcountries.com/v2/name/${country}`))
+    .then(response => response.json())
+    .then(data => renderCountry(data[0]));
+}
