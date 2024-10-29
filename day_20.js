@@ -444,76 +444,76 @@ TEST DATA: ['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']. To test, turn of
 GOOD LUCK 😀
 */
 
-const createImg = function (imgPath) {
-  return new Promise((resolve, reject) => {
-    const imgEl = document.createElement('img');
-    imgEl.src = imgPath;
-    imgEl.addEventListener('load', () => {
-      imgContainer.append(imgEl);
-      resolve(imgEl);
+// const createImg = function (imgPath) {
+//   return new Promise((resolve, reject) => {
+//     const imgEl = document.createElement('img');
+//     imgEl.src = imgPath;
+//     imgEl.addEventListener('load', () => {
+//       imgContainer.append(imgEl);
+//       resolve(imgEl);
 
-      imgEl.addEventListener('error', () => {
-        reject(new Error('Image not found'));
-      });
-    });
-  });
-};
+//       imgEl.addEventListener('error', () => {
+//         reject(new Error('Image not found'));
+//       });
+//     });
+//   });
+// };
 
-const wait = function (sec) {
-  return new Promise(response => {
-    setTimeout(() => {
-      response();
-    }, sec * 1000);
-  });
-};
+// const wait = function (sec) {
+//   return new Promise(response => {
+//     setTimeout(() => {
+//       response();
+//     }, sec * 1000);
+//   });
+// };
 
-const imgContainer = document.querySelector('.images');
-const loadNPause = async function () {
-  try {
-    await wait(2);
-    const img1 = await createImg('./images/img-1.jpg');
-    await wait(2);
-    img1.style.display = `none`;
-    const img2 = await createImg('./images/img-2.jpg');
-    await wait(2);
-    img2.style.display = `none`;
-    const img3 = await createImg('./images/img-3.jpg');
-    await wait(2);
-    img3.style.display = `none`;
-    console.log(`displayed all images`);
-  } catch (err) {
-    console.error(err.message);
-  }
-};
+// const imgContainer = document.querySelector('.images');
+// const loadNPause = async function () {
+//   try {
+//     await wait(2);
+//     const img1 = await createImg('./images/img-1.jpg');
+//     await wait(2);
+//     img1.style.display = `none`;
+//     const img2 = await createImg('./images/img-2.jpg');
+//     await wait(2);
+//     img2.style.display = `none`;
+//     const img3 = await createImg('./images/img-3.jpg');
+//     await wait(2);
+//     img3.style.display = `none`;
+//     console.log(`displayed all images`);
+//   } catch (err) {
+//     console.error(err.message);
+//   }
+// };
 
 // loadNPause();
 
-const imgArr = [
-  './images/img-1.jpg',
-  './images/img-2.jpg',
-  './images/img-3.jpg',
-];
+// const imgArr = [
+//   './images/img-1.jpg',
+//   './images/img-2.jpg',
+//   './images/img-3.jpg',
+// ];
 
-const loadAll = async function (imgArr) {
-  // const imgs = imgArr.map(img => createImg(img));
-  // console.log(imgs);
+// const loadAll = async function (imgArr) {
+//   // const imgs = imgArr.map(img => createImg(img));
+//   // console.log(imgs);
 
-  const imgs = imgArr.map(async img => await createImg(img));
-  console.log(imgs);
+//   const imgs = imgArr.map(async img => await createImg(img));
+//   console.log(imgs);
 
-  const imgEl = await Promise.all(imgs);
-  console.log(imgEl);
+//   const imgEl = await Promise.all(imgs);
+//   console.log(imgEl);
 
-  imgEl.forEach(img => img.classList.add('parallel'));
+//   imgEl.forEach(img => img.classList.add('parallel'));
 
-  // const [img1, img2, img3] = imgArr;
-  // // console.log(img1, img2, img3);
-  // const imgs = Promise.all([createImg(img1), createImg(img2), createImg(img3)]);
-  // // imgs.forEach(img => img.classList.add('parallel'));
-  // imgs.then(data => data.forEach(d => d.classList.add('parallel')));
-};
+// const [img1, img2, img3] = imgArr;
+// // console.log(img1, img2, img3);
+// const imgs = Promise.all([createImg(img1), createImg(img2), createImg(img3)]);
+// // imgs.forEach(img => img.classList.add('parallel'));
+// imgs.then(data => data.forEach(d => d.classList.add('parallel')));
+// };
 
-loadAll(imgArr);
+// loadAll(imgArr);
 
 // (async function () {
 //   try {
