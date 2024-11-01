@@ -1,6 +1,6 @@
 // for old browser which does not have es6 functionality
 import { async } from 'regenerator-runtime'; // for polyfilling async/await
-import { API_URL } from './config.js';
+import { API_URL, RESULTS_PER_PAGE } from './config.js';
 import { getJSON } from './helpers.js';
 
 export const state = {
@@ -8,6 +8,8 @@ export const state = {
   search: {
     query: '',
     results: [],
+    page: 1,
+    resultsPerPage: RESULTS_PER_PAGE,
   },
 };
 
@@ -39,6 +41,7 @@ export const loadSearchResults = async function (query) {
 
     const data = await getJSON(`${API_URL}?search=${query}`);
 
+    console.log(data);
     state.search.results = data.data.recipes.map(recipe => {
       return {
         id: recipe.id,
@@ -50,4 +53,13 @@ export const loadSearchResults = async function (query) {
   } catch (err) {
     throw err;
   }
+};
+
+export const getSearchResultsPage = function (page = state.search.page) {
+  state.search.page = page;
+
+  const start = (page - 1) * state.search.resultsPerPage; // 0
+  const end = page * state.search.resultsPerPage; // 9 // not (page * 10) - 1 because the slice value doesn't include the last value
+
+  return state.search.results.slice(start, end);
 };
