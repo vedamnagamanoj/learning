@@ -14,9 +14,28 @@ class RecipeView extends View {
     );
   }
 
+  addHandlerUpdateServings(handler) {
+    this._parentElement.addEventListener('click', function (evnt) {
+      const btn = evnt.target.closest('.btn--tiny');
+      if (!btn) return;
+
+      const { updateTo } = btn.dataset;
+
+      if (+updateTo > 0) handler(+updateTo);
+    });
+  }
+
+  addHandlerAddBookmark(handler) {
+    this._parentElement.addEventListener('click', function (evnt) {
+      const btn = evnt.target.closest('.btn--bookmark');
+      if (!btn) return;
+      handler();
+    });
+  }
+
   _generateMarkup() {
     return `<figure class="recipe__fig">
-          <img src="${this._data.image}" alt="${
+          <img src="${this._data.imageUrl}" alt="${
       this._data.title
     }" class="recipe__img" />
           <h1 class="recipe__title">
@@ -44,12 +63,16 @@ class RecipeView extends View {
             <span class="recipe__info-text">servings</span>
 
             <div class="recipe__info-buttons">
-              <button class="btn--tiny btn--increase-servings">
+              <button class="btn--tiny btn--update-servings" data-update-to ="${
+                this._data.servings - 1
+              }">
                 <svg>
                   <use href="${icons}#icon-minus-circle"></use>
                 </svg>
               </button>
-              <button class="btn--tiny btn--increase-servings">
+              <button class="btn--tiny btn--update-servings" data-update-to = "${
+                this._data.servings + 1
+              }">
                 <svg>
                   <use href="${icons}#icon-plus-circle"></use>
                 </svg>
@@ -62,9 +85,11 @@ class RecipeView extends View {
               <use href="${icons}#icon-user"></use>
             </svg>
           </div>
-          <button class="btn--round">
+          <button class="btn--round btn--bookmark">
             <svg class="">
-              <use href="${icons}#icon-bookmark-fill"></use>
+              <use href="${icons}#icon-bookmark${
+      this._data.isBookmarked ? '-fill' : ''
+    }"></use>
             </svg>
           </button>
         </div>
